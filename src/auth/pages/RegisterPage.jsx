@@ -4,14 +4,22 @@ import { Link as RouterLink } from 'react-router-dom'
 import { useForm } from '../../hooks'
 import { AuthLayout } from '../layout/AuthLayout'
 
+const formData = {
+  email: 'eduardo@samaniego.com',
+  password: '123456',
+  passwordConfirmed: '123456',
+  displayName: 'Eduardo Samaniego'
+}
+
+const formValidations = {
+  email: [(value) => value.includes('@'),'El correo debe tener una @'],
+  password: [(value) => value.length >= 8,'El password debe tener más de 6 letras'],
+  displayName: [(value) => value.length >= 1,'El nombre es obligatorio']
+}
+
 export const RegisterPage = () => {
 
-  const { email, password, onInputChange, displayName, passwordConfirmed} = useForm({
-    email: 'eduardo@samaniego.com',
-    password: '123456',
-    passwordConfirmed: '123456',
-    displayName: 'Eduardo Samaniego'
-  })
+  const { email, password, onInputChange, displayName, passwordConfirmed} = useForm( formData, formValidations )
 
   const onSubmit = (e) =>{
     e.preventDefault()
@@ -29,6 +37,7 @@ export const RegisterPage = () => {
               name="displayName"
               value={displayName}
               onChange={onInputChange}
+              error
             >
             </TextField>
           </Grid>
