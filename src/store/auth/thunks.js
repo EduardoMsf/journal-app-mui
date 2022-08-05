@@ -20,12 +20,11 @@ export const startGoogleSignIn = () => {
 
 export const startCreatingUserWithEmailPassword = ({email, password, displayName}) => {
   return async( dispatch ) =>{
+  
     dispatch( checkingCredentials() )
     const { ok, uid, photoURL, errorMessage } = await registerUserEmailPassword({email, password, displayName})
+    if( !ok ) return dispatch( logout({errorMessage}))
+    dispatch( login({ uid, displayName, email, photoURL }))
 
-    if( !ok) return dispatch( logout({errorMessage}))
-
-    dispatch( logint({ uid, displayName, email, photoURL }))
-    
   }
 }
