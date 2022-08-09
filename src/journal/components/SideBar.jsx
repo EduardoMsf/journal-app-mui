@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux'
 
 export const SideBar = ({ drawerWidth }) => {
   const {displayName} = useSelector(state => state.auth)
-  //onsole.log(displayName)
+  const { notes } = useSelector( state => state.journal)
+  console.log(notes)
   return (
     <Box
       component='nav'
@@ -29,15 +30,15 @@ export const SideBar = ({ drawerWidth }) => {
 
         <List>
           {
-            ['Enero', 'Febrero', 'Marzo', 'Abril'].map( text =>(
-              <ListItem key={text} disablePadding>
+            notes.map( note =>(
+              <ListItem key={note.id} disablePadding>
                 <ListItemButton>
                   <ListItemIcon>
                     <TurnedInNot />
                   </ListItemIcon>
                   <Grid container sx={{display:'block'}}>
-                    <ListItemText primary={text} />
-                    <ListItemText secondary={'Bla bla bla bla bla'}/>
+                    <ListItemText primary={note.title} />
+                    <ListItemText secondary={note.id}/>
                   </Grid>
                 </ListItemButton>
               </ListItem>
