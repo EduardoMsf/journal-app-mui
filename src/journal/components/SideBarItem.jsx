@@ -9,6 +9,12 @@ export const SideBarItem = ({ title, body, id }) => {
       ? title.substring(0,17) + '...'
       : title
   },[title])
+  const newID = useMemo(() => {
+    return id.length > 17 
+      ? id.substring(0,17) + '...'
+      : id
+  },[id])
+  
   return (
     <ListItem disablePadding>
       <ListItemButton>
@@ -17,7 +23,7 @@ export const SideBarItem = ({ title, body, id }) => {
         </ListItemIcon>
         <Grid container sx={{display:'block'}}>
           <ListItemText primary={newTitle} />
-          <ListItemText secondary={id}/>
+          <ListItemText secondary={newID}/>
         </Grid>
       </ListItemButton>
     </ListItem>
