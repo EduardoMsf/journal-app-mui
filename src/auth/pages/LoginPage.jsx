@@ -10,12 +10,14 @@ import { useForm } from '../../hooks'
 import { checkingAuthentication, startGoogleSignIn, startLoginWithEmailPassword } from '../../store/auth'
 
 
+const formData = {
+  email: '',
+  password: ''
+}
+
 export const LoginPage = () => {
 
-  const { email, password, onInputChange, formState } = useForm({
-    email: '',
-    password: ''
-  })
+  const { email, password, onInputChange } = useForm(formData)
 
   const dispatch = useDispatch()
   const {status, errorMessage } = useSelector( state => state.auth)
