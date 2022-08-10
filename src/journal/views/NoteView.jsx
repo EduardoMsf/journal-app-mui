@@ -1,8 +1,14 @@
+import { useSelector } from 'react-redux'
 import { SaveOutlined } from "@mui/icons-material"
 import { Button, Grid, TextField, Typography } from "@mui/material"
 import { ImageGallery } from "../components"
 
+
 export const NoteView = () => {
+
+  const { active } = useSelector(state => state.journal)
+  const { title, body, date} = active
+  
   return (
     <Grid
       className='animate__animated animate__fadeIn animate__faster'
@@ -13,7 +19,7 @@ export const NoteView = () => {
       alignItems='center'
     >
       <Grid item>
-        <Typography fontSize={39} fontWeight='light'>1 de Agosto de 2022</Typography>
+        <Typography fontSize={39} fontWeight='light'>{date}</Typography>
       </Grid>
       <Grid item >
         <Button color='primary' sx={{ padding:2 }}>
@@ -27,7 +33,7 @@ export const NoteView = () => {
           variant='filled'
           fullWidth
           placeholder="Note..."
-          label='titulo'
+          label={title}
           sx={{ border: 'none', mb:1 }}
         />
         <TextField 
@@ -35,7 +41,7 @@ export const NoteView = () => {
           variant='filled'
           fullWidth
           multiline
-          placeholder="What's up?"
+          placeholder={body}
           minRows={ 5 }
         />
       </Grid>

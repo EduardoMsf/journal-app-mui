@@ -1,4 +1,4 @@
-import { async } from "@firebase/util"
+
 import { collection, doc, setDoc } from "firebase/firestore/lite"
 import { FirebaseDB } from "../../firebase/config"
 import { loadNotes } from "../../helpers/"
@@ -11,8 +11,8 @@ export const startNewNote = () => {
     const { uid } = getState().auth
 
     const newNote = {
-      title: '', 
-      body: '',
+      title: 'Desarrollo en React', 
+      body: 'App de elecciones en React',
       date: new Date().getTime(),
     }
 
