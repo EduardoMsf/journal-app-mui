@@ -5,13 +5,13 @@ export const ImageGallery = () => {
 
   const { active:note } = useSelector( state => state.journal)
   const { imageUrls } = note
-  console.log({imageUrls})
+  //console.log({imageUrls})
   // imageUrls.forEach(image => {
   //   console.log(image.url)
   // });
   return (
     <ImageList sx={{ width: '100%', height: 500 }} cols={4} rowHeight={164}>
-      {imageUrls.map((image, index) => (
+      {imageUrls?.map((image, index) => (
         <ImageListItem key={index}>
           <img
             src={`${image.secure_url}?w=164&h=164&fit=crop&auto=format`}

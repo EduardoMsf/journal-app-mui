@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { SaveOutlined, UploadOutlined } from "@mui/icons-material"
+import { SaveOutlined, UploadOutlined, DeleteOutline } from "@mui/icons-material"
 import { Button, Grid, IconButton, TextField, Typography } from "@mui/material"
 import { ImageGallery } from "../components"
 import { useForm } from '../../hooks/useForm'
 import { useEffect, useMemo, useRef } from 'react'
-import { setActiveNote, startSaveNote, startUploadingFiles } from '../../store/journal'
+import { setActiveNote, startDeletingNote, startSaveNote, startUploadingFiles } from '../../store/journal'
 import Swal from 'sweetalert2'
 import 'sweetalert2/dist/sweetalert2.css'
 
@@ -43,9 +43,11 @@ export const NoteView = () => {
   }
 
   const fileInputRef = useRef()
-
-  console.log(note.imagesUrls)
   
+  const onDelete = () => {
+    dispatch( startDeletingNote())
+    Swal.fire('Nota borrada', ':)', 'success')
+  }
   
   return (
     <Grid
@@ -102,6 +104,19 @@ export const NoteView = () => {
           value={body}
           onChange={onInputChange}
         />
+      </Grid>
+      <Grid
+        container
+        justifyContent='end'
+      >
+        <Button
+          onClick={ onDelete }
+          sx={{mt: 2}}
+          color='error'
+        >
+          <DeleteOutline />
+          Borrar
+        </Button>
       </Grid>
 
       {/*Imagenes*/}
