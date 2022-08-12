@@ -43,6 +43,8 @@ export const NoteView = () => {
   }
 
   const fileInputRef = useRef()
+
+  console.log(note.imagesUrls)
   
   
   return (
