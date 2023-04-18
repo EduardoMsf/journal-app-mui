@@ -13,7 +13,7 @@ export const SideBar = ({ drawerWidth }) => {
       sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 }}}
     >
       <Drawer
-        variant='permanent'//temporary
+        variant='permanent'//temporary,permanent
         open
         sx={{
           display: { xs: 'block' },
